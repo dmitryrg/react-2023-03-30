@@ -1,18 +1,17 @@
-import { Button } from "@/components/Button/Button";
 import React from "react";
+import { Menu } from "@/components/Menu/Menu";
 
 export const Restaurant = ({ restaurant }) => {
-  if (!restaurant) {
-    return null;
-  }
+  if (!restaurant) return null;
 
-  const { name } = restaurant;
+  const { name,menu,reviews } = restaurant;
 
   return (
     <div>
-      <Button>
-        <span>{name}</span>
-      </Button>
+      <span>{name}</span>
+      <div>
+          <Menu menu={menu} />
+      </div>
     </div>
   );
 };
