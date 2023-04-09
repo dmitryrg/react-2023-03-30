@@ -2,6 +2,7 @@ import React from "react";
 import { Reviews } from "@/components/Reviews/Reviews";
 import { Menu } from "@/components/Menu/Menu";
 import { Dish } from '@/components/Dish/Dish.jsx'
+import {Review} from '@/components/Review/Review.jsx'
 
 export const Restaurant = ({ restaurant }) => {
   if (!restaurant) return null;
@@ -22,8 +23,14 @@ export const Restaurant = ({ restaurant }) => {
         </div>
       </div>
       <div>
-        <div>-отзывы-</div>
+        <div>-список отзывов-</div>
         <Reviews reviews={reviews}/>
+      </div>
+      <div>
+        <div>-отзывы подробно-</div>
+        <div>
+          {reviews.map(review=> (<Review key={review.id} review={review}/>))}
+        </div>
       </div>
       <div>#######</div>
     </div>

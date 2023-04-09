@@ -1,18 +1,22 @@
-import { Rating } from "@/components/Rating/Rating";
 import React from "react";
 
 export const Review = ({ review }) => {
-  if (!review) {
-    return null;
-  }
-
-  const { user, text, rating } = review;
+  if (!review ) return null;
 
   return (
     <div>
-      <p>{user}</p>
-      <Rating value={rating} />
-      <p>{text}</p>
+      <div>
+        <span>имя: </span>
+        <span>{review.user}</span>
+      </div>
+      <div>
+        <span>отзыв: </span>
+        <span>{review.text}</span>
+      </div>
+      <div>
+        <span>рэйтинг: </span>
+        <span>{review.rating}</span>
+      </div>
     </div>
   );
 };
