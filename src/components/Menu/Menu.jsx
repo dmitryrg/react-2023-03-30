@@ -1,11 +1,11 @@
 import React from "react";
 
 export const Menu = ({ menu }) => {
-  if (!(menu && Array.isArray(menu) && menu.length===0)) return null;
+  if (!(menu && Array.isArray(menu) && menu.length>0)) return null;
 
   return (
     <div>
-      {menu.map(dish=> {} )}
+      {menu.map(dish=> (<div key={dish.id}>{dish.name}</div>))}
     </div>
   );
 };
