@@ -1,8 +1,9 @@
 import React from "react";
-import { Reviews } from "@/components/Reviews/Reviews";
+
 import { Menu } from "@/components/Menu/Menu";
 import { Dish } from '@/components/Dish/Dish.jsx'
-import {Review} from '@/components/Review/Review.jsx'
+import { Reviews } from "@/components/Reviews/Reviews";
+import { Review } from '@/components/Review/Review.jsx'
 
 export const Restaurant = ({ restaurant }) => {
   if (!restaurant) return null;
