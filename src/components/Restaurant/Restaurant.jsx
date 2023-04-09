@@ -1,22 +1,17 @@
-import { Button } from "@/components/Button/Button";
-import { Menu } from "@/components/Menu/Menu";
-import { NewReviewForm } from "@/components/NewReviewForm/NewReviewForm";
-import { Reviews } from "@/components/Reviews/Reviews";
 import React from "react";
+import { Menu } from "@/components/Menu/Menu";
 
 export const Restaurant = ({ restaurant }) => {
-  if (!restaurant) {
-    return null;
-  }
+  if (!restaurant) return null;
 
-  const { name, menu, reviews } = restaurant;
+  const { name,menu,reviews } = restaurant;
 
   return (
     <div>
-      <h2>{name}</h2>
-      <Menu menu={menu} />
-      <Reviews reviews={reviews} />
-      <NewReviewForm />
+      <span>{name}</span>
+      <div>
+          <Menu menu={menu} />
+      </div>
     </div>
   );
 };
