@@ -1,4 +1,3 @@
-/* eslint-disable react/no-children-prop */
 import { Restaurant } from "@/components/Restaurant/Restaurant";
 import { restaurants } from "@/constants/fixtures";
 import React from "react";
