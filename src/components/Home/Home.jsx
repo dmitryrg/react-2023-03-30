@@ -12,14 +12,3 @@ export const Home = () => {
     </div>
   );
 };
-
-function HomePageOld() {
-  return React.createElement("div", {
-    children: restaurants.map((restaurant) =>
-      React.createElement("div", {
-        children: restaurant.name,
-        key: restaurant.id,
-      })
-    ),
-  });
-}
