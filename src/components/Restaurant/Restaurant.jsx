@@ -1,4 +1,6 @@
 import { Button } from "@/components/Button/Button";
+import { Menu } from "@/components/Menu/Menu";
+import { Reviews } from "@/components/Reviews/Reviews";
 import React from "react";
 
 export const Restaurant = ({ restaurant }) => {
@@ -6,13 +8,13 @@ export const Restaurant = ({ restaurant }) => {
     return null;
   }
 
-  const { name } = restaurant;
+  const { name, menu, reviews } = restaurant;
 
   return (
     <div>
-      <Button>
-        <span>{name}</span>
-      </Button>
+      <h2>{name}</h2>
+      <Menu menu={menu} />
+      <Reviews reviews={reviews} />
     </div>
   );
 };
