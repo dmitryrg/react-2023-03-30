@@ -9,7 +9,7 @@ export const Review = ({ review }) => {
   const { user, text, rating } = review;
   const maxRating = 5;
   const ratingImgs = []
-  for(let i = 0; i<maxRating; i++) {
+  for(let i = 0; i < maxRating; i++) {
     ratingImgs.push(i<rating?'star-gold':'star')
   }
   return (
