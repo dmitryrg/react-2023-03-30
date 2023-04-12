@@ -15,7 +15,7 @@ export const Review = ({ review }) => {
   return (
     <div>
       <p>{user}</p>
-      {<p>{ratingImgs.map((ratingImg,index)=>(<Image  key={index} src={`/${ratingImg}.png`}  alt="no rating image"/>))}</p>}
+      {<p>{ratingImgs.map((ratingImg,index)=>(<Image width={15} height={15} key={index} src={`/${ratingImg}.png`}  alt="no rating image"/>))}</p>}
       <p>{text}</p>
     </div>
   );
