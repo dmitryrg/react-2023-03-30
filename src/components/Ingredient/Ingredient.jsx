@@ -2,22 +2,16 @@ import { Button } from "@/components/Button/Button";
 import React, { useState } from "react";
 
 import styles from "./styles.module.scss";
-import { Ingredients } from "@/components/Ingredients/Ingredients";
+import classNames from "classnames";
 import { useAmount } from "@/hooks/useAmount";
 
-export const Dish = ({ dish }) => {
-  const { amount, increment, decrement } = useAmount();
-
-  if (!dish) {
-    return null;
-  }
-
-  const { name, ingredients } = dish;
+export const Ingredient = ({ ingredient, className }) => {
+  const { amount, increment, decrement } = useAmount(1);
 
   return (
-    <div>
-      <div className={styles.mainInfo}>
-        <span className={styles.title}>{name}</span>
+    <div className={classNames(styles.root, className)}>
+      <span className={styles.title}>{ingredient}</span>
+      <div>
         <Button
           className={styles.decrementAction}
           type="secondary"
@@ -36,9 +30,6 @@ export const Dish = ({ dish }) => {
           +
         </Button>
       </div>
-      {amount > 0 && (
-        <Ingredients ingredients={ingredients} className={styles.ingredients} />
-      )}
     </div>
   );
 };
