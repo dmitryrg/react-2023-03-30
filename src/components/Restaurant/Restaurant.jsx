@@ -1,4 +1,3 @@
-import { Button } from "@/components/Button/Button";
 import { Menu } from "@/components/Menu/Menu";
 import { NewReviewForm } from "@/components/NewReviewForm/NewReviewForm";
 import { Reviews } from "@/components/Reviews/Reviews";
