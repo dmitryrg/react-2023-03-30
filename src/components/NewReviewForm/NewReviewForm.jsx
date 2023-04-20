@@ -1,14 +1,18 @@
 import { Rating } from "@/components/Rating/Rating";
-import React, { useReducer, useState } from "react";
+import React, { useReducer } from "react";
 
 const initialState = {
+  author: "",
   name: "",
-  text: "",
+  text: "as",
   rating: 5,
 };
 
 const reducer = (state, action) => {
+  console.log('state ->', state); // debug
   switch (action?.type) {
+    case "setAuthor":
+      return { ...initialState, author: action.payload };
     case "setName":
       return { ...initialState, name: action.payload };
     case "setText":
@@ -28,6 +32,15 @@ export const NewReviewForm = () => {
 
   return (
     <div>
+      <div>
+        <label>Author</label>
+        <input
+          value={formValue.author}
+          onChange={(event) =>
+            dispatch({ type: "setAuthor", payload: event.target.value })
+          }
+        />
+      </div>
       <div>
         <label>Name</label>
         <input
@@ -56,6 +69,7 @@ export const NewReviewForm = () => {
           }
         />
         <Rating
+          canChangeRating={true}
           value={formValue.rating}
           onChange={(rating) =>
             dispatch({ type: "setRating", payload: rating })
