@@ -3,10 +3,13 @@ import React, { useState } from "react";
 
 import styles from "./styles.module.scss";
 import { Ingredients } from "@/components/Ingredients/Ingredients";
-import { useAmount } from "@/hooks/useAmount";
+import { useDispatch, useSelector } from "@/CustomStore";
 
 export const Dish = ({ dish }) => {
-  const { amount, increment, decrement } = useAmount();
+  const amount = useSelector((state) => state[dish.name] || 0);
+  const dispatch = useDispatch();
+  const increment = () => dispatch({ type: "increment", payload: dish.name });
+  const decrement = () => dispatch({ type: "decrement", payload: dish.name });
 
   if (!dish) {
     return null;
