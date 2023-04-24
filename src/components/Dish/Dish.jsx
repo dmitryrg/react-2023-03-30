@@ -3,14 +3,8 @@ import React, { useState } from "react";
 
 import styles from "./styles.module.scss";
 import { Ingredients } from "@/components/Ingredients/Ingredients";
-import { useDispatch, useSelector } from "@/CustomStore";
 
-export const Dish = ({ dish }) => {
-  const amount = useSelector((state) => state[dish.name] || 0);
-  const dispatch = useDispatch();
-  const increment = () => dispatch({ type: "increment", payload: dish.name });
-  const decrement = () => dispatch({ type: "decrement", payload: dish.name });
-
+export const Dish = ({ dish, amount, increment, decrement }) => {
   if (!dish) {
     return null;
   }
@@ -39,9 +33,6 @@ export const Dish = ({ dish }) => {
           +
         </Button>
       </div>
-      {amount > 0 && (
-        <Ingredients ingredients={ingredients} className={styles.ingredients} />
-      )}
     </div>
   );
 };
