@@ -1,14 +1,14 @@
-import {useEffect, useState} from 'react'
+import {useCallback, useLayoutEffect, useState} from 'react'
 //useLayoutEffect
-export const useRestaurant = (initialRestaurant = 0) => {
+export const useRestaurant = useCallback((initialRestaurant = 0) => {
   const [activeRestaurantIndex, setActiveRestaurantIndex] = useState(initialRestaurant);
 
   const setActiveRestaurantIndexWithCache = (index) => {
     setActiveRestaurantIndex(index);
     localStorage.setItem("activeRestaurantIndex", index);
-  };
+  },[]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const savedActiveRestaurantIndex = localStorage.getItem(
       "activeRestaurantIndex"
     );
