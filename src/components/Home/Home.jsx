@@ -16,11 +16,14 @@ export const Home = () => {
     storageName: "activeRestaurantIndex",
   });
 
+  const [schema,setSchema] = useState('default-1')
+  const [theme,setTheme] = useState('default-2')
+  const passData = {schema,theme }
   const activeRestaurant = restaurants[activeIndex];
 
   return (
     <Provider store={store}>
-      <ThemeContextProvider>
+      <ThemeContext.Provider value={passData}>
         <div>
           <Header />
           <Tabs restaurants={restaurants} onTabClick={setActiveIndex} />
@@ -32,7 +35,7 @@ export const Home = () => {
           )}
           <Cart />
         </div>
-      </ThemeContextProvider>
+      </ThemeContext.Provider>
     </Provider>
   );
 };

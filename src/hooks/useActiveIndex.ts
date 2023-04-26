@@ -1,4 +1,4 @@
-import { useCallback, useLayoutEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 export const useActiveIndex = ({ initialActiveIndex = 0, storageName }) => {
   const [activeIndex, setActiveIndex] = useState(initialActiveIndex);
@@ -14,7 +14,7 @@ export const useActiveIndex = ({ initialActiveIndex = 0, storageName }) => {
     [storageName]
   );
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (storageName) {
       const savedActiveIndex = Number(localStorage.getItem(storageName));
 
