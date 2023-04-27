@@ -2,27 +2,27 @@ class Store {
   state;
   rootReducer;
 
-  subscribers = new Map();
+  subscribers = new Set();
 
   constructor(rootReducer) {
     this.rootReducer = rootReducer;
     this.state = this.rootReducer();
   }
 
-  subscribe(callback) {
-    this.subscribers.set(callback, callback);
+  subscribe(selectiveRender) {
+    this.subscribers.add(selectiveRender);
   }
 
-  unsubscribe(callback) {
-    this.subscribers.delete(callback);
+  unsubscribe(selectiveRender) {
+    this.subscribers.delete(selectiveRender);
   }
 
   // action = {type: string, payload: any}
   dispatch(action) {
     this.state = this.rootReducer(this.state, action);
 
-    this.subscribers.forEach((_, callback) => {
-      callback(this.state);
+    this.subscribers.forEach(selectiveRender => {
+      selectiveRender(this.state);
     });
   }
 

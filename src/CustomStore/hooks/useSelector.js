@@ -6,11 +6,11 @@ export const useSelector = (selector) => {
   const [value, setValue] = useState(() => selector(store.getState()));
 
   useEffect(() => {
-    const callback = (value) => setValue(selector(value));
+    const selectiveRender = (state) => setValue(selector(state));
 
-    store.subscribe(callback);
+    store.subscribe(selectiveRender);
 
-    return () => store.unsubscribe(callback);
+    return () => store.unsubscribe(selectiveRender);
   }, []);
 
   return value;

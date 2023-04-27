@@ -1,12 +1,12 @@
 import { Provider } from "@/CustomStore";
-import { Button } from "@/components/Button/Button";
+// import { Button } from "@/components/Button/Button";
 import { Cart } from "@/components/Cart/Cart";
 import { Header } from "@/components/Header/Header";
 import { Restaurant } from "@/components/Restaurant/Restaurant";
 import { Tabs } from "@/components/Tabs/Tabs";
 import { restaurants } from "@/constants/fixtures";
 import { ThemeContextProvider } from "@/contexts/ThemeContext/ThemeContextProvider";
-import { ThemeContext } from "@/contexts/ThemeContext/themeContext";
+// import { ThemeContext } from "@/contexts/ThemeContext/themeContext";
 import { useActiveIndex } from "@/hooks/useActiveIndex";
 import { store } from "@/store";
 import React, { useState } from "react";
@@ -23,7 +23,7 @@ export const Home = () => {
 
   return (
     <Provider store={store}>
-      <ThemeContext.Provider value={passData}>
+      <ThemeContextProvider>
         <div>
           <Header />
           <Tabs restaurants={restaurants} onTabClick={setActiveIndex} />
@@ -35,7 +35,7 @@ export const Home = () => {
           )}
           <Cart />
         </div>
-      </ThemeContext.Provider>
+      </ThemeContextProvider>
     </Provider>
   );
 };
