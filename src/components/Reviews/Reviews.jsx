@@ -5,7 +5,7 @@ export const Reviews = ({ reviewIds }) => {
   if (!reviewIds?.length) {
     return null;
   }
-console.log('reviewIds Reviews ->', reviewIds); // debug
+
   return (
     <div>
       <h3>Reviews</h3>

@@ -5,7 +5,7 @@ import {selectReviewById} from '@/store/entities/review/selectors.js'
 
 export const ReviewContainer = ({ reviewId }) => {
   const review = useSelector((state) => selectReviewById(state, { reviewId }));
-console.log('review ReviewContainer ->', review); // debug
+
   return (
     <Review
       review={review}

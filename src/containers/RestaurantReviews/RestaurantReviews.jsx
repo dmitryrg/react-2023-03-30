@@ -7,7 +7,7 @@ export const RestaurantReviewsContainer = ({ restaurantId }) => {
   const reviewIds = useSelector((state) =>
     selectReviewsByRestaurantId(state, { restaurantId })
   );
-console.log('reviewIds RestaurantReviewsContainer ->', reviewIds); // debug
+
   if (!reviewIds?.length) {
     return null;
   }

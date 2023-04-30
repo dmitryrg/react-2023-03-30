@@ -10,7 +10,7 @@ const rootReducer = combineReducers({
   restaurant: restaurantReducer,
   dish: dishReducer,
   user: userReducer,
-  review:reviewReducer
+  review: reviewReducer
 });
 
 export const store = createStore(rootReducer);
