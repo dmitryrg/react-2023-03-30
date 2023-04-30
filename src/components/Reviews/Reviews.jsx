@@ -1,16 +1,16 @@
 import React from "react";
 import {ReviewContainer} from '@/containers/Review/Review.jsx'
 
-export const Reviews = ({ reviewsIds }) => {
-  if (!reviewsIds?.length) {
+export const Reviews = ({ reviewIds }) => {
+  if (!reviewIds?.length) {
     return null;
   }
-
+console.log('reviewIds Reviews ->', reviewIds); // debug
   return (
     <div>
       <h3>Reviews</h3>
       <ul>
-        {reviewsIds.map((reviewId,index) => (
+        {reviewIds.map((reviewId,index) => (
           <li key={reviewId}>
             <ReviewContainer reviewId={reviewId} />
           </li>

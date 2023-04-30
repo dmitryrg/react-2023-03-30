@@ -6,11 +6,11 @@ export const Review = ({ review }) => {
     return null;
   }
 
-  const { user, text, rating } = review;
+  const { userId, text, rating } = review;
 
   return (
     <div>
-      <p>{user}</p>
+      <p>{userId}</p>
       <Rating value={rating} />
       <p>{text}</p>
     </div>
