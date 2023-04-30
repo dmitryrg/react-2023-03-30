@@ -1,8 +1,8 @@
-import { Review } from "@/components/Review/Review";
 import React from "react";
+import {ReviewContainer} from '@/containers/Review/Review.jsx'
 
-export const Reviews = ({ reviews }) => {
-  if (!reviews?.length) {
+export const Reviews = ({ reviewsIds }) => {
+  if (!reviewsIds?.length) {
     return null;
   }
 
@@ -10,9 +10,9 @@ export const Reviews = ({ reviews }) => {
     <div>
       <h3>Reviews</h3>
       <ul>
-        {reviews.map((review) => (
-          <li key={review?.id}>
-            <Review review={review} />
+        {reviewsIds.map((reviewId,index) => (
+          <li key={reviewId}>
+            <ReviewContainer reviewId={reviewId} />
           </li>
         ))}
       </ul>

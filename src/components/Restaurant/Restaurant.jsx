@@ -5,6 +5,7 @@ import { Reviews } from "@/components/Reviews/Reviews";
 import { RestaurantMenuContainer } from "@/containers/RestaurantMenu/RestaurantMenu";
 import { useAmount } from "@/hooks/useAmount";
 import React, { useMemo } from "react";
+import {RestaurantReviewsContainer} from '@/containers/RestaurantReviews/RestaurantReviews.jsx'
 
 export const Restaurant = ({ restaurant }) => {
   const { name, id } = restaurant || {};
@@ -25,8 +26,8 @@ export const Restaurant = ({ restaurant }) => {
       <h2>{name}</h2>
       {/* <Rating value={rating} /> */}
       <RestaurantMenuContainer restaurantId={id} />
-      {/* <Reviews reviews={reviews} /> */}
-      <NewReviewForm />
+      <RestaurantReviewsContainer restaurantId={id} />
+      {/*<NewReviewForm />*/}
     </div>
   );
 };
