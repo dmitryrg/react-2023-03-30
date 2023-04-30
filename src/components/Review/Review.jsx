@@ -1,5 +1,6 @@
 import { Rating } from "@/components/Rating/Rating";
 import React from "react";
+import {UserContainer} from '@/containers/User/User.jsx'
 
 export const Review = ({ review }) => {
   if (!review) {
@@ -10,7 +11,7 @@ export const Review = ({ review }) => {
 
   return (
     <div>
-      <p>{userId}</p>
+      <UserContainer userId = {userId} />
       <Rating value={rating} />
       <p>{text}</p>
     </div>
