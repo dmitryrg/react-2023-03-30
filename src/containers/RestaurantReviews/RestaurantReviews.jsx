@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import { loadReviewByRestaurantIdIfNotExisted } from '@/store/entities/review/thunk/loadReviewByRestaurantIdIfNotExisted.js'
 import { selectIsReviewLoading } from '@/store/entities/review/selectors.js'
+import { selectIsUserLoading } from '@/store/entities/user/selectors.js'
+import { loadUserIfNotExisted } from '@/store/entities/user/thunk/loadUserIfNotExisted.js'
 
 export const RestaurantReviewsContainer = ({ restaurantId }) => {
   const dispatch = useDispatch();
@@ -12,9 +14,11 @@ export const RestaurantReviewsContainer = ({ restaurantId }) => {
     selectReviewsByRestaurantId(state, { restaurantId })
   );
 
-  const isLoading = useSelector(selectIsReviewLoading);
+  const isLoadingUsers = useSelector(selectIsUserLoading);
+  const isLoadingReviews = useSelector(selectIsReviewLoading);
 
   useEffect(() => {
+    dispatch(loadUserIfNotExisted());
     dispatch(loadReviewByRestaurantIdIfNotExisted(restaurantId));
   }, [dispatch, restaurantId]);
 
@@ -22,9 +26,10 @@ export const RestaurantReviewsContainer = ({ restaurantId }) => {
     return null;
   }
 
-  if (isLoading) {
-    return <span>Loading Reviews...<br/></span>;
+  if (isLoadingUsers || isLoadingReviews) {
+    return <span>{`${ isLoadingUsers ? 'Loading Users... ':''} ${isLoadingReviews ? 'Loading Reviews...':''}`}<br/></span>;
   }
+
 
   return <Reviews reviewIds={reviewIds} />;
 };

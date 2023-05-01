@@ -1,4 +1,4 @@
-import {LOADING_STATUS} from '@/constants/loading-status.js'
+import { LOADING_STATUS } from '@/constants/loading-status.js'
 
 export const selectReviewModule = (state) => state.review;
 
