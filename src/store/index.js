@@ -1,6 +1,6 @@
-import { dishReducer, dishSlice } from "@/store/entities/dish";
+import { dishSlice } from "@/store/entities/dish";
 import { restaurantReducer } from "@/store/entities/restaurant";
-import { reviewReducer } from "@/store/entities/review";
+import { reviewSlice} from '@/store/entities/review'
 import { userReducer } from "@/store/entities/user";
 import { logger } from "@/store/middlewares/logger";
 import { cartReducer } from "@/store/ui/cart";
@@ -11,7 +11,7 @@ const rootReducer = combineReducers({
   cart: cartReducer,
   restaurant: restaurantReducer,
   dish: dishSlice.reducer,
-  review: reviewReducer,
+  review: reviewSlice.reducer,
   user: userReducer,
 });
 
