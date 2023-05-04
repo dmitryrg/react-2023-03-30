@@ -1,11 +1,15 @@
-import { Home } from "@/components/Home/Home";
+import { Restaurants } from "@/components/Restaurants/Restaurants";
+import {
+  selectIsRestaurantLoading,
+  selectRestaurantIds,
+} from "@/store/entities/restaurant/selectors";
 import { loadRestaurantIfNotExisted } from "@/store/entities/restaurant/thunks/loadRestaurantIfNotExisted";
-import { selectIsRestaurantLoading } from "@/store/entities/restaurant/selectors";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-export const HomeContainer = () => {
+export const RestaurantsContainer = () => {
   const isRestaurantLoading = useSelector(selectIsRestaurantLoading);
+  const restaurantIds = useSelector(selectRestaurantIds);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -15,6 +19,5 @@ export const HomeContainer = () => {
   if (isRestaurantLoading) {
     return <div>Loading...</div>;
   }
-
-  return <Home />;
+  return <Restaurants restaurantIds={restaurantIds} />;
 };
