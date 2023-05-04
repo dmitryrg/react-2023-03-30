@@ -16,8 +16,8 @@ export const userSlice = createSlice({
     },
     finishLoading: (state, { payload }) => {
       state.loadingStatus = LOADING_STATUS.finished;
-      state.entities = payload.reduce((acc, dish) => {
-        acc[dish.id] = dish;
+      state.entities = payload.reduce((acc, user) => {
+        acc[user.id] = user;
 
         return acc;
       }, {});
