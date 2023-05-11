@@ -1,15 +1,15 @@
-import { restaurantSlice } from "@/store/entities/restaurant";
 import { selectRestaurantIds } from "@/store/entities/restaurant/selectors";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 
-export const loadRestaurantIfNotExisted = () => (dispatch, getState) => {
-  if (selectRestaurantIds(getState()).length) {
-    return;
+export const fetchRestaurants = createAsyncThunk(
+  "restaurant/fetchRestaurants",
+  async (_, { getState, rejectWithValue }) => {
+    if (selectRestaurantIds(getState()).length) {
+      return rejectWithValue(LOADING_STATUS.earlyAdded);
+    }
+
+    const response = await fetch("http://localhost:3001/api/restaurants/");
+
+    return await response.json();
   }
-
-  dispatch(restaurantSlice.actions.startLoading());
-
-  fetch("http://localhost:3001/api/restaurants/")
-    .then((response) => response.json())
-    .then((restaurants) => dispatch(restaurantSlice.actions.finishLoading(restaurants)))
-    .catch(() => dispatch(restaurantSlice.actions.failLoading()));
-};
+);

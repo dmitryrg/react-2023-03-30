@@ -1,5 +1,23 @@
+import Image from "next/image";
 import React from "react";
 
-export const RestaurantCard = ({ restaurant }) => {
-  return <div>{restaurant.name}</div>;
+import styles from "./styles.module.scss";
+import classNames from "classnames";
+
+export const RestaurantCard = ({ restaurant, className }) => {
+  return (
+    <div className={classNames(styles.root, className)}>
+      <Image
+        src={restaurant.img}
+        width="150"
+        height="100"
+        alt="restaurant photo"
+        className={styles.image}
+      />
+      <div className={styles.mainInfo}>
+        <h3>{restaurant.name}</h3>
+        <span>{restaurant.description}</span>
+      </div>
+    </div>
+  );
 };

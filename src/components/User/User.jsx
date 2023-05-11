@@ -1,5 +1,7 @@
 import React from "react";
 
+import styles from "./styles.module.scss";
+
 export const User = ({ user }) => {
-  return <div>{user.name}</div>;
+  return <div className={styles.root}>{user.name}</div>;
 };

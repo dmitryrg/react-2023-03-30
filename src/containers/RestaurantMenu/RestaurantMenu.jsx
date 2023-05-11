@@ -5,6 +5,7 @@ import {
   loadDishByRestaurantIdIfNotExisted,
 } from "@/store/entities/dish/thunk/loadDishByRestaurantIdIfNotExisted";
 import { selectMenuByRestaurantId } from "@/store/entities/restaurant/selectors";
+import { fetchRestaurants } from "@/store/entities/restaurant/thunks/loadRestaurantIfNotExisted";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -18,6 +19,10 @@ export const RestaurantMenuContainer = ({ restaurantId }) => {
   useEffect(() => {
     dispatch(fetchDishByRestaurantId(restaurantId));
   }, [dispatch, restaurantId]);
+
+  useEffect(() => {
+    dispatch(fetchRestaurants());
+  }, [dispatch]);
 
   if (!menu?.length) {
     return null;

@@ -1,29 +1,29 @@
-import { NewReviewForm } from "@/components/NewReviewForm/NewReviewForm";
-import { RestaurantMenuContainer } from "@/containers/RestaurantMenu/RestaurantMenu";
-import { RestaurantReviewsContainer } from "@/containers/RestaurantReviews/RestaurantReviews";
+import Link from "next/link";
 import React from "react";
 
-export const Restaurant = ({ restaurant }) => {
-  const { name, id } = restaurant || {};
+import styles from "./styles.module.scss";
 
-  // const rating = useMemo(
-  //   () =>
-  //     !!reviews?.length
-  //       ? Math.floor(
-  //           reviews.reduce((acc, review) => acc + review.rating, 0) /
-  //             reviews.length
-  //         )
-  //       : 0,
-  //   [reviews]
-  // );
+export const Restaurant = ({ restaurant }) => {
+  const { name, description } = restaurant || {};
 
   return (
-    <div>
+    <div className={styles.root}>
       <h2>{name}</h2>
-      {/* <Rating value={rating} /> */}
-      <RestaurantMenuContainer restaurantId={id} />
-      <RestaurantReviewsContainer restaurantId={id} />
-      <NewReviewForm />
+      <span>{description}</span>
+      <div className={styles.navigationBar}>
+        <Link
+          href={`/restaurants/${restaurant.id}/menu`}
+          className={styles.link}
+        >
+          Меню
+        </Link>
+        <Link
+          href={`/restaurants/${restaurant.id}/reviews`}
+          className={styles.link}
+        >
+          Отзывы
+        </Link>
+      </div>
     </div>
   );
 };

@@ -7,12 +7,10 @@ import { DishContainer } from "@/containers/Dish/Dish";
 export const Menu = ({ menu }) => {
   return (
     <div className={styles.root}>
-      <h3>Menu</h3>
+      <h3>Меню</h3>
       <ul className={styles.dishList}>
         {menu.map((dishId) => (
-          <li key={dishId} className={styles.dish}>
-            <DishContainer dishId={dishId} />
-          </li>
+          <DishContainer key={dishId} dishId={dishId} className={styles.dish} />
         ))}
       </ul>
     </div>

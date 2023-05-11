@@ -1,3 +1,16 @@
-export default function AboutUsPage() {
-  return <div>AboutUsPage</div>;
+export default function AboutUsPage({ restaurants }) {
+  console.log("restaurants", restaurants);
+  return <div>{restaurants[0].name}</div>;
+}
+
+export async function getServerSideProps() {
+  const response = await fetch("http://localhost:3001/api/restaurants/");
+
+  const restaurants = await response.json();
+
+  return {
+    props: {
+      restaurants,
+    },
+  };
 }

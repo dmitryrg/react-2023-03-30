@@ -1,11 +1,12 @@
 import { RestaurantCardContainer } from "@/containers/RestaurantCard/RestaurantCard";
-import { useActiveId } from "@/hooks/useActiveIndex";
 import Link from "next/link";
 import React from "react";
 
+import styles from "./styles.module.scss";
+
 export const Restaurants = ({ restaurantIds }) => {
   return (
-    <div>
+    <div className={styles.root}>
       {restaurantIds.map((restaurantId) => (
         <Link
           key={restaurantId}
@@ -13,6 +14,7 @@ export const Restaurants = ({ restaurantIds }) => {
             pathname: "/restaurants/[restaurantId]",
             query: { restaurantId },
           }}
+          className={styles.restaurantLink}
         >
           <RestaurantCardContainer restaurantId={restaurantId} />
         </Link>

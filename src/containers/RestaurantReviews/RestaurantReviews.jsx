@@ -1,8 +1,9 @@
 import { Reviews } from "@/components/Reviews/Reviews";
 import { selectReviewsByRestaurantId } from "@/store/entities/restaurant/selectors";
+import { fetchRestaurants } from "@/store/entities/restaurant/thunks/loadRestaurantIfNotExisted";
 import { selectIsReviewLoading } from "@/store/entities/review/selectors";
-import { loadReviewsByRestaurantIdIfNotExisted } from "@/store/entities/review/thunks/loadReviewsByRestaurantIdIfNotExisted";
-import { loadUserIfNotExisted } from "@/store/entities/user/thunks/loadUserIfNotExisted";
+import { fetchReviewByRestaurantId } from "@/store/entities/review/thunks/loadReviewsByRestaurantIdIfNotExisted";
+import { fetchUsers } from "@/store/entities/user/thunks/loadUserIfNotExisted";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -14,11 +15,12 @@ export const RestaurantReviewsContainer = ({ restaurantId }) => {
   const isLoading = useSelector(selectIsReviewLoading);
 
   useEffect(() => {
-    dispatch(loadReviewsByRestaurantIdIfNotExisted(restaurantId));
+    dispatch(fetchReviewByRestaurantId(restaurantId));
   }, [dispatch, restaurantId]);
 
   useEffect(() => {
-    dispatch(loadUserIfNotExisted());
+    dispatch(fetchUsers());
+    dispatch(fetchRestaurants());
   }, [dispatch]);
 
   if (!reviews?.length) {

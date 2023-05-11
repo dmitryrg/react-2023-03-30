@@ -1,22 +1,26 @@
-import { reviewSlice } from "@/store/entities/review";
+import { LOADING_STATUS } from "@/constants/loading-status";
 import { selectReviewIds } from "@/store/entities/review/selectors";
-import { selectReviewsByRestaurantId } from "@/store/entities/restaurant/selectors";
+import { selectRestaurantById } from "@/store/entities/restaurant/selectors";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 
-export const loadReviewsByRestaurantIdIfNotExisted =
-  (restaurantId) => (dispatch, getState) => {
-    const restaurantReviews = selectReviewsByRestaurantId(getState(), {
-      restaurantId,
-    });
-    const reviewIds = selectReviewIds(getState());
+export const fetchReviewByRestaurantId = createAsyncThunk(
+  "review/fetchReviewByRestaurantId",
+  async (restaurantId, { getState, rejectWithValue }) => {
+    const state = getState();
+    const restaurant = selectRestaurantById(state, { restaurantId });
+    const reviewIds = selectReviewIds(state);
 
-    if (restaurantReviews.every((reviewId) => reviewIds.includes(reviewId))) {
-      return;
+    if (
+      restaurant &&
+      restaurant.reviews.every((reviewId) => reviewIds.includes(reviewId))
+    ) {
+      return rejectWithValue(LOADING_STATUS.earlyAdded);
     }
 
-    dispatch(reviewSlice.actions.startLoading());
+    const response = await fetch(
+      `http://localhost:3001/api/reviews?restaurantId=${restaurantId}`
+    );
 
-    fetch(`http://localhost:3001/api/reviews?restaurantId=${restaurantId}`)
-      .then((response) => response.json())
-      .then((reviews) => dispatch(reviewSlice.actions.finishLoading(reviews)))
-      .catch(() => dispatch(reviewSlice.actions.failLoading()));
-  };
+    return await response.json();
+  }
+);

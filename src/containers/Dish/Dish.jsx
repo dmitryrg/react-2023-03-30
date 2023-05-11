@@ -5,7 +5,7 @@ import { selectDishAmount } from "@/store/ui/cart/selectors";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-export const DishContainer = ({ dishId }) => {
+export const DishContainer = ({ dishId, ...props }) => {
   const dish = useSelector((state) => selectDishById(state, { dishId }));
   const amount = useSelector((state) => selectDishAmount(state, { dishId }));
   const dispatch = useDispatch();
@@ -18,6 +18,7 @@ export const DishContainer = ({ dishId }) => {
       amount={amount}
       increment={increment}
       decrement={decrement}
+      {...props}
     />
   );
 };

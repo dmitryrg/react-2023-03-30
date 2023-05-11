@@ -3,8 +3,6 @@ import classNames from "classnames";
 import Image from "next/image";
 
 import styles from "./styles.module.scss";
-import { Button } from "@/components/Button/Button";
-import { ThemeContext } from "@/contexts/ThemeContext/themeContext";
 import Link from "next/link";
 
 export const Header = ({ className }) => {
@@ -13,10 +11,13 @@ export const Header = ({ className }) => {
       <Image src="/images/logo.png" width={115} height={18} alt="" />
       <div className={styles.links}>
         <Link href="/" className={styles.link}>
-          Home
+          Главная
         </Link>
         <Link href="/restaurants" className={styles.link}>
-          Restaurants
+          Рестораны
+        </Link>
+        <Link href="/cart" className={styles.link}>
+          Корзина
         </Link>
       </div>
     </header>
