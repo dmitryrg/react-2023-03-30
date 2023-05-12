@@ -1,14 +1,24 @@
-import { ThemeContext } from "@/contexts/ThemeContext/themeContext";
+import {
+  ThemeContext,
+  ThemeSetterContext,
+} from "@/contexts/ThemeContext/themeContext";
 import React, { useMemo, useState } from "react";
 
 export const ThemeContextProvider = ({ children }) => {
   const [theme, setTheme] = useState("default");
+  const [buttonTheme, setButtonTheme] = useState("default");
 
-  const contextValue = useMemo(() => ({ theme, setTheme }), [theme]);
+  const contextValue = useMemo(
+    () => ({ theme, buttonTheme }),
+    [theme, buttonTheme]
+  );
+  const contextSetters = useMemo(() => ({ setTheme, setButtonTheme }), []);
 
   return (
     <ThemeContext.Provider value={contextValue}>
-      {children}
+      <ThemeSetterContext.Provider value={contextSetters}>
+        {children}
+      </ThemeSetterContext.Provider>
     </ThemeContext.Provider>
   );
 };
