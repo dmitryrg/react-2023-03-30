@@ -1,5 +1,5 @@
 import { LOADING_STATUS } from "@/constants/loading-status";
-import { fetchDishByRestaurantId } from "@/store/entities/dish/thunk/loadDishByRestaurantIdIfNotExisted";
+import { fetchDishesByRestaurantId } from "@/store/entities/dish/thunk/loadDishByRestaurantIdIfNotExisted.js";
 import { createEntityAdapter, createSlice } from "@reduxjs/toolkit";
 
 const dishEntityAdapter = createEntityAdapter();
@@ -10,14 +10,14 @@ export const dishSlice = createSlice({
     loadingStatus: LOADING_STATUS.idle,
   }),
   extraReducers: {
-    [fetchDishByRestaurantId.pending]: (state) => {
+    [fetchDishesByRestaurantId.pending]: (state) => {
       state.loadingStatus = LOADING_STATUS.inProgress;
     },
-    [fetchDishByRestaurantId.fulfilled]: (state, { payload }) => {
+    [fetchDishesByRestaurantId.fulfilled]: (state, { payload }) => {
       state.loadingStatus = LOADING_STATUS.finished;
       dishEntityAdapter.setMany(state, payload);
     },
-    [fetchDishByRestaurantId.rejected]: (state, { payload }) => {
+    [fetchDishesByRestaurantId.rejected]: (state, { payload }) => {
       state.loadingStatus =
         payload === LOADING_STATUS.earlyAdded
           ? LOADING_STATUS.finished
