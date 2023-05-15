@@ -7,8 +7,12 @@ export const CartContainer = () => {
   const cart = useSelector(selectCartModule);
 
   if (!Object.keys(cart || {}).length) {
-    return null;
-  }
+    return (
+    <div>
+      <h3>Cart</h3>
+      <p>Not order</p>
+    </div>
+  )}
 
   return <Cart cart={cart} />;
 };
