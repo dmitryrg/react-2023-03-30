@@ -5,7 +5,7 @@ import {LOADING_STATUS} from '@/constants/loading-status.js'
 
 export const fetchRestaurants = createAsyncThunk(
   "restaurant/fetchRestaurants",
-  async (restaurantId, { getState, rejectWithValue }) => {
+  async (_, { getState, rejectWithValue }) => {
     try {
       const state = getState();
       if (selectRestaurantIds(state).length) {
